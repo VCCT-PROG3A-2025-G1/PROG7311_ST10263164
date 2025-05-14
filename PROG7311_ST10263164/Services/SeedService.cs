@@ -6,13 +6,15 @@ namespace PROG7311_ST10263164.Services
 {
     public class SeedService
     {
-        public static async Task SeedDatabase(IServiceProvider serviceProvider) 
+        public static async Task SeedDatabase(IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Users>>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<SeedService>>();
+
+            logger.LogInformation("Resetting database");
 
             try
             {
@@ -35,30 +37,16 @@ namespace PROG7311_ST10263164.Services
                         NormalizedUserName = employeeEmail.ToUpper(),
                         NormalizedEmail = employeeEmail.ToUpper(),
                         EmailConfirmed = true,
-                        SecurityStamp = Guid.NewGuid().ToString(),
+                        SecurityStamp = Guid.NewGuid().ToString()
                     };
 
                     var result = await userManager.CreateAsync(employeeUser, "Password123!");
-                }
-
-                logger.LogInformation("Seed farmer");
-                var farmerEmail = "wm@gmail.com";
-                if (await userManager.FindByEmailAsync(farmerEmail) == null)
-                {
-                    var farmerUser = new Users
+                    if (result.Succeeded)
                     {
-                        UserName = farmerEmail,
-                        Email = farmerEmail,
-                        FullName = "McPetrie,William",
-                        NormalizedUserName = farmerEmail.ToUpper(),
-                        NormalizedEmail = farmerEmail.ToUpper(),
-                        EmailConfirmed = true,
-                        SecurityStamp = Guid.NewGuid().ToString(),
-                    };
-
-                    var result = await userManager.CreateAsync(farmerUser, "123");
+                        await userManager.AddToRoleAsync(employeeUser, "Employee");
+                        logger.LogInformation("employeeUser created and assigned to Employee role.");
+                    }
                 }
-
             }
             catch (Exception ex)
             {

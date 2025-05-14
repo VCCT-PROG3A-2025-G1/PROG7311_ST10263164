@@ -1,0 +1,40 @@
+﻿@using PROG7311_ST10263164.ViewModels;
+@model AddItemViewModel
+@{
+    ViewData["Title"] = "Create Item Page";
+}
+<body>
+    <div class="logincardbox">
+        <div class="logincard">
+            <form asp-action="AddItem" asp-controller="Market" method="post">
+                <h3>Add Item Below</h3>
+                <hr>
+                <div>
+                    <p>Product Name</p>
+                    <input asp-for="ProductName" type="text" class="form-label" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+                <hr>
+                <div>
+                    <p>Product Description</p>
+                    <input asp-for="ProductDescription" type="text" class="form-label" />
+                    <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                </div>
+                <hr>
+                <div>
+                    <p>Product Category</p>
+                    <input asp-for="Category" type="text" class="form-label" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <hr>
+                <div>
+                    <p>Produc tDate </p>
+                    <input asp-for="ProductDate" type="date" class="form-label" />
+                    <span asp-validation-for="ProductDate" class="text-danger"></span>
+                </div>
+
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+    </div>
+</body>

@@ -58,5 +58,45 @@ namespace PROG7311_ST10263164.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateUser(CreateUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = new Users
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FullName = model.FullName,
+                NormalizedUserName = model.Email.ToUpper(),
+                NormalizedEmail = model.Email.ToUpper(),
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+            };
+            var result = await userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded) 
+            {
+                var roleExist = await roleManager.RoleExistsAsync(model.Role);
+                if (!roleExist)
+                {
+                    var role = new IdentityRole("User");
+                    await roleManager.CreateAsync(role);
+                }
+                await userManager.AddToRoleAsync(user, model.Role);
+                await signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var error in result.Errors) 
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
     }
 }

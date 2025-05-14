@@ -145,6 +145,32 @@ namespace PROG7311_ST10263164.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PROG7311_ST10263164.Models.Products", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("ProductDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProductDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("PROG7311_ST10263164.Models.Users", b =>
                 {
                     b.Property<string>("Id")

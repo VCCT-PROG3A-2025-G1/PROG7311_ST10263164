@@ -1,4 +1,6 @@
-﻿@{
+﻿@using PROG7311_ST10263164.ViewModels;
+@model ProductsViewModel;
+@{
     ViewData["Title"] = "Market Page";
 }
 
@@ -56,19 +58,17 @@
 
         </div>
 
-        <div class="marketcardbox">
-            <!--this div holds and arranges market cards which are store items-->
-            <!--ADD LOOP OF DATABASE ITEMS-->
-
-            <div class="marketcard">
-                <!--these are the store items/market cards-->
-                <img src="~/img/fertilizer.jpg" alt="fertilizer" class="img-fluid">
-                <hr></hr>
-                <h4>Fertilzer combo</h4>
-                <p><a href="market/Supplier.html">AgriMart</a></p>
-                <h5>R240.00</h5>
-            </div>
-
+        <div class="marketcardbox">                       <!--this div holds and arranges market cards which are store items-->
+            @foreach (var product in Model.ProductList)
+            {
+                <div class="marketcard">                   <!--these are the store items/market cards-->
+                    <h4>@product.ProductName</h4>
+                    <hr>
+                    <p>@product.Category</p>
+                    <p>@product.ProductDate</p>
+                    <p>@product.ProductDescription</p>
+                </div>
+            }
         </div>
 
     </div>

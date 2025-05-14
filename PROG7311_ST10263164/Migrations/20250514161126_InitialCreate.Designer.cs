@@ -11,7 +11,7 @@ using PROG7311_ST10263164.Data;
 namespace PROG7311_ST10263164.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250514093831_InitialCreate")]
+    [Migration("20250514161126_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -146,6 +146,32 @@ namespace PROG7311_ST10263164.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("PROG7311_ST10263164.Models.Products", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateOnly>("ProductDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProductDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("PROG7311_ST10263164.Models.Users", b =>

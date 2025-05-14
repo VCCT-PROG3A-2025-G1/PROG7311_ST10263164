@@ -21,7 +21,7 @@ namespace PROG7311_ST10263164.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
+        }  
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

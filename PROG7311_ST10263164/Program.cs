@@ -3,9 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using PROG7311_ST10263164.Data;
 using PROG7311_ST10263164.Models;
-using PROG7311_ST10263164.Services;
 using Microsoft.AspNetCore.Builder;
 using PROG7311_ST10263164.Controllers;
+using Microsoft.Extensions.Logging;
+using PROG7311_ST10263164.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +29,6 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
 
 var app = builder.Build();
 
-await SeedService.SeedDatabase(app.Services);
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -48,5 +47,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    await SeedService.SeedDatabase(serviceProvider);
+}
 
 app.Run();
