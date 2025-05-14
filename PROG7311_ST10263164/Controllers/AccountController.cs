@@ -25,6 +25,11 @@ namespace PROG7311_ST10263164.Controllers
             return View();
         }
 
+        public IActionResult CreateUser()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model) 

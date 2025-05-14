@@ -7,7 +7,36 @@
 <body>
     <div class="logincardbox">
         <div class="logincard">
-            
+            <form asp-action="CreateUser" method="post">
+                @Html.AntiForgeryToken()
+                <h3>Add User Below</h3>
+                <hr>
+                <div>
+                    <p>Email</p>
+                    <input asp-for="Email" class="form-label"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <hr>
+                <div>
+                    <p>Password</p>
+                    <input asp-for="Password" class="form-label" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <hr>
+                <div>
+                    <p>Full Name (Surname,Name)</p>
+                    <input asp-for="FullName" class="form-label" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <hr>
+                <div>
+                    <p>Add Role</p>
+                    <input asp-for="Role" class="form-label" />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <hr>
+                <button type="submit">Add User</button>
+            </form>
         </div>
     </div>
 </body>
