@@ -1,0 +1,32 @@
+﻿@using PROG7311_ST10263164.ViewModels;
+@model LoginViewModel;
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<body>
+    <div class="logincardbox">
+        <div class="logincard">
+            <form asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+
+                <h2>Login Below</h2>
+                <hr>
+                <div>
+                    <p>Email</p>
+                    <input asp-for="Email" type="email" class="form-label" placeholder="example@gmail.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <p></p>
+                <div>
+                    <p>Password</p>
+                    <input asp-for="Password" type="password" class="form-label" placeholder="Password123" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <hr>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+
