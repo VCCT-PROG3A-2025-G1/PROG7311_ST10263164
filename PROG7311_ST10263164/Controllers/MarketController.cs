@@ -64,6 +64,5 @@ namespace PROG7311_ST10263164.Controllers
 
             return RedirectToAction("MarketPlace","Market");
         }
-
     }
 }

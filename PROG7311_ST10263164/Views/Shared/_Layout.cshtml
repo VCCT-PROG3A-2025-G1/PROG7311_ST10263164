@@ -31,9 +31,6 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="CreateUser">Add User</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="CreateUser">Add User</a>
-                        </li>
                         @if (User.IsInRole("Farmer") || User.IsInRole("FARMER"))
                         {
                             <li class="nav-item">
@@ -41,6 +38,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Market" asp-action="AddItem">Sell</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Market" asp-action="MyItems">My Items</a>
                             </li>
                         }
                         <partial name="_LoginPartial"/>
