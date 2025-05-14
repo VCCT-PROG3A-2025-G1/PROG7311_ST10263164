@@ -14,8 +14,6 @@ namespace PROG7311_ST10263164.Services
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Users>>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<SeedService>>();
 
-            logger.LogInformation("Resetting database");
-
             try
             {
                 logger.LogInformation("Ensuring database created");
