@@ -41,6 +41,24 @@ namespace PROG7311_ST10263164.Services
                     var result = await userManager.CreateAsync(employeeUser, "Password123!");
                 }
 
+                logger.LogInformation("Seed farmer");
+                var farmerEmail = "wm@gmail.com";
+                if (await userManager.FindByEmailAsync(farmerEmail) == null)
+                {
+                    var farmerUser = new Users
+                    {
+                        UserName = farmerEmail,
+                        Email = farmerEmail,
+                        FullName = "McPetrie,William",
+                        NormalizedUserName = farmerEmail.ToUpper(),
+                        NormalizedEmail = farmerEmail.ToUpper(),
+                        EmailConfirmed = true,
+                        SecurityStamp = Guid.NewGuid().ToString(),
+                    };
+
+                    var result = await userManager.CreateAsync(farmerUser, "123");
+                }
+
             }
             catch (Exception ex)
             {
