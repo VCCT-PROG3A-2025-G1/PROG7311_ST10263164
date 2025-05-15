@@ -24,14 +24,14 @@ namespace PROG7311_ST10263164.Services
                 await AddRoleAsync(roleManager, "Farmer");
 
                 logger.LogInformation("Seed employee");
-                var employeeEmail = "mb@gmail.com";
+                var employeeEmail = "mb@gmail.com"; 
                 if (await userManager.FindByEmailAsync(employeeEmail) == null)
                 {
                     var employeeUser = new Users
                     {
                         UserName = employeeEmail,
                         Email = employeeEmail,
-                        FullName = "Brummer,Marli",
+                        FullName = "Brummer,Marli", //user is not gaining role? rather use own predefined users
                         NormalizedUserName = employeeEmail.ToUpper(),
                         NormalizedEmail = employeeEmail.ToUpper(),
                         EmailConfirmed = true,
