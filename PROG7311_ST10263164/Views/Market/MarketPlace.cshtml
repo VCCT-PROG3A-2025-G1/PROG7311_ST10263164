@@ -1,12 +1,45 @@
 ﻿@using PROG7311_ST10263164.ViewModels;
-@model ProductsViewModel;
-@{
+@model MarketPlaceViewModel;
+@{ 
     ViewData["Title"] = "Market Page";
 }
 
 <body>
 
     <div class="marketbox">
+        <div class="filtercardbox">
+            <div class="filtercard">
+                <h3>Filters</h3>
+                <hr>
+                <form asp-action="FilterbyCategory" asp-controller="Market" method="post">
+                    <h4>Filter by category</h4>
+                    <div>
+                        <input asp-for="CategoryFilter" type="text" class="form-label" />
+                        <span asp-validation-for="CategoryFilter" class="text-danger"></span>
+                    </div>
+                    <button type="submit">search by category</button>
+                </form>
+                <hr>
+                <form asp-action="FilterDateRange" asp-controller="Market" method="post">
+                    <h4>Filter by date</h4>
+                    <div>
+                        <p>From this Date</p>
+                        <input asp-for="ProductDateFrom" type="date" class="form-label" />
+                        <span asp-validation-for="ProductDateFrom" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <p>Till this Date</p>
+                        <input asp-for="ProductDateTill" type="date" class="form-label" />
+                        <span asp-validation-for="ProductDateTill" class="text-danger"></span>
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+                <hr>
+                <hr>
+            </div>
+        </div>
+
+
         <div class="marketcardbox">                       <!--this div holds and arranges market cards which are store items-->
             @foreach (var product in Model.ProductList)
             {

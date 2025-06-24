@@ -113,6 +113,8 @@ body {
 }
 
 .filtercard {
+    position: fixed;
+    width:18%;
     background-color: white;
     color: black;
     padding: 10px;

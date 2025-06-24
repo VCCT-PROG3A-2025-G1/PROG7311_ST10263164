@@ -12,6 +12,12 @@
 
                 <h2>Login Below</h2>
                 <hr>
+                @if (ViewData.ModelState.ErrorCount > 0)
+                {
+                    <div class="alert alert-danger">
+                        <p>Invalid login attempt. Please try again.</p>
+                    </div>
+                }
                 <div>
                     <p>Email</p>
                     <input asp-for="Email" type="email" class="form-label" placeholder="example@gmail.com" />

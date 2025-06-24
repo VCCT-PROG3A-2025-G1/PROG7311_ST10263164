@@ -27,7 +27,9 @@ namespace PROG7311_ST10263164.Controllers
         public async Task<IActionResult> MarketPlace()
         {
             var products = await _dbContext.Products.ToListAsync(); // Gets all products from the database
-            var viewModel = new ProductsViewModel
+            var categoryViewModel = new CategoryViewModel();
+            var dateViewModel = new DateViewModel();
+            var viewModel = new MarketPlaceViewModel
             {
                 ProductList = products
             };
@@ -73,7 +75,7 @@ namespace PROG7311_ST10263164.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> FilterDateRange(DateViewModel model)
+        public async Task<IActionResult> FilterDateRange(MarketPlaceViewModel model)
         {
             var products = await _dbContext.Products.ToListAsync(); // Get all products from the database
 
@@ -95,13 +97,15 @@ namespace PROG7311_ST10263164.Controllers
                 model.ProductList = newProducts; // products filtered by date polpulates the models product list
             }
 
-            return View("DateRange", model);
+            return View("MarketPlace", model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> FilterByCategory(CategoryViewModel model)
+        public async Task<IActionResult> FilterByCategory(MarketPlaceViewModel model)
         {
             var products = await _dbContext.Products.ToListAsync(); // Get all products from the database
+
+            //List<Products> filteredProductList;
 
             if (model.CategoryFilter is not null)
             {
@@ -121,7 +125,7 @@ namespace PROG7311_ST10263164.Controllers
                 model.ProductList = newProducts; // products filtered by date polpulates the models product list
             }
 
-            return View("FilterCategory", model);
+            return View("MarketPlace", model);
         }
     }
 }
