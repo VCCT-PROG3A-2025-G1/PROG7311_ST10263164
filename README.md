@@ -18,14 +18,13 @@ git:
 - open the .proj file
 - enjoy
 
-##SAMPLE DATA
-1
-log: dg@gmail.com
-pas: Gr33ff
-2
+## SAMPLE DATA
+
+Farmer:
 log: wm@gmail.com
 pas: Dieg011748
-3
+
+Employee:
 log: marlim@gmail.com
 pas: Marl1
 
